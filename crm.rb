@@ -15,21 +15,31 @@ get "/contacts" do
   erb :contacts
 end
 
-post "/contacts" do
+get '/contacts/new' do
+	erb :new_contact
+end
+
+post '/contacts' do
 	new_contact = Contact.new(params[:first_name],params[:last_name],params[:email], params[:note])
 	@@rolodex.add_contact(new_contact)
 	redirect to('/contacts')
 end
 
-get '/contacts/new' do
-	erb :new_contact
+get '/contacts/modify' do
+	erb :modify_contacts
 end
 
-# get '/contacts/:id/edit' do
-# end
+get '/contacts/delete' do
+	erb :delete_contact 
+end
 
-# get '/contacts/:id' do
-# end
+get '/contacts/:id/edit' do
+	@id = params[:id]
+	erb :edit_contact
+	puts @id
+end
+
+
 
 
 

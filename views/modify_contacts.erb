@@ -1,0 +1,9 @@
+<h1>Modify Contact</h1>
+	<p>Select the contact you would like to edit:</p>
+		<ul>
+			<% @@rolodex.contacts.each do |contact| %> 
+  		<li><%= contact.first_name %> <%= contact.last_name %><%= embed = "<a href=\"/contacts/#{contact.id}/edit\"> "%>edit</a></li>
+			<% end %>
+		</ul>
+
+		
