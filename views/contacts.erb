@@ -4,11 +4,17 @@
 		<% @@rolodex.contacts.each do |contact| %> 
 			<div class = "card">
 				<a class = "delete" href="/contacts/<%= contact.id %>/delete">X</a>
-				<ul class="card">
-					<li class = "card-title"><%= contact.first_name %> <%= contact.last_name %></li> 
-					<li class = "card-info">Email: <%= contact.email%></li>
-					<li class = "card-info">ID: <%= contact.id %></li>
-				</ul>
+				<div class="visible">
+					<ul class="card">
+						<li class = "card-title"><%= contact.first_name %> <%= contact.last_name %></li> 
+					</ul>
+				</div>
+				<div class="hidden">
+					<ul class="card">
+						<li class = "card-info"><%= contact.email%></li>
+						<li class = "card-info">ID: <%= contact.id %></li>
+					</ul>
+				</div>
 			</div>
 		<% end %>
 	</div>

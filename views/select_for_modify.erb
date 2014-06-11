@@ -1,12 +1,14 @@
 <div class = "modify_contact">
 	<h2 class = "modify_contact">Modify Contact</h2>
-		<p>Select the contact you would like to edit:</p>
-			<ul>
-				<% @@rolodex.contacts.each do |contact| %> 
-					<li>
-						<a href="/contacts/<%= contact.id %>/edit"><%= contact.first_name + " " + contact.last_name %></a>
-					</li>
-				<% end %>
-			</ul>
-		</div>
+	<p>Select the contact you would like to edit:</p>
+	<div class = "modify-list">
+		<ul>
+			<% @@rolodex.contacts.each do |contact| %> 
+				<li>
+					<a href="/contacts/<%= contact.id %>/edit"><%= contact.first_name + " " + contact.last_name %></a>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
 
