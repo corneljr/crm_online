@@ -1,32 +1,35 @@
-<h1>Create new Contact</h1>
 
-<form action="/contacts" method="post" class="pure-form pure-form-aligned">
-    <fieldset>
-        <div class="pure-control-group">
-            <label for="name">First Name</label>
-            <input id="name" type="text" placeholder="First Name" name="first_name">
-        </div>
 
-        <div class="pure-control-group">
-            <label for="name">Last Name</label>
-            <input id="name" type="text" placeholder="Last Name" name="last_name">
-        </div>
+<div class = "form">
+<form action="/contacts" method="post" class="pure-form pure-form-aligned" >
+    <legend class = "new_contact" >Create new Contact</legend>
+        <fieldset class = "new_contact">
+            <div class="pure-control-group">
+                <label for="name">First Name</label>
+                <input id="name" type="text" placeholder="First Name" name="first_name">
+            </div>
 
-        <div class="pure-control-group">
-            <label for="email">Email Address</label>
-            <input id="email" type="email" placeholder="Email Address" name="email">
-        </div>
+            <div class="pure-control-group">
+                <label for="name">Last Name</label>
+                <input id="name" type="text" placeholder="Last Name" name="last_name">
+            </div>
 
-        <div class="pure-control-group">
-            <label for="foo">Notes</label>
-            <input id="foo" type="text" placeholder="Notes" name="note">
-        </div>
+            <div class="pure-control-group">
+                <label for="email">Email Address</label>
+                <input id="email" type="email" placeholder="Email Address" name="email">
+            </div>
 
-        <div class="pure-controls">
-            <button type="submit" class="pure-button pure-button-primary" name="submit">Submit</button>
-        </div>
-    </fieldset>
+            <div class="pure-control-group">
+                <label for="foo">Notes</label>
+                <input id="foo" type="text" placeholder="Notes" name="note">
+            </div>
+
+            <div class="pure-controls">
+                <button type="submit" class="pure-button pure-button-primary" name="submit">Submit</button>
+            </div>
+        </fieldset>
 </form>
+</div>
 
 <!-- 
 <form action="/contacts" method="post">

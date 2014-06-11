@@ -7,8 +7,7 @@ require_relative 'rolodex'
 #routes
 
 get '/' do
-	@crm_app_name = "My CRM"
-	erb :index
+	redirect to('/contacts/new')
 end
 
 get "/contacts" do
@@ -22,21 +21,35 @@ end
 post '/contacts' do
 	new_contact = Contact.new(params[:first_name],params[:last_name],params[:email], params[:note])
 	@@rolodex.add_contact(new_contact)
-	redirect to('/contacts')
+	redirect to('/')
 end
 
 get '/contacts/modify' do
-	erb :modify_contacts
+	erb :select_for_modify
 end
 
 get '/contacts/delete' do
-	erb :delete_contact 
+	erb :select_for_delete
+end
+
+get '/contacts/:id/delete' do
+	@contact = @@rolodex.contacts.find { |contact| contact.id == params[:id].to_i }
+	@@rolodex.delete_contact(@contact)
+	redirect to('/contacts')
 end
 
 get '/contacts/:id/edit' do
-	@id = params[:id]
+	@contact = @@rolodex.contacts.find { |contact| contact.id == params[:id].to_i }
 	erb :edit_contact
-	puts @id
+end
+
+post '/contacts/:id' do
+	@contact = @@rolodex.contacts.find { |contact| contact.id == params[:id].to_i }
+	@contact.first_name = params[:first_name]
+	@contact.last_name = params[:last_name]
+	@contact.email = params[:email]
+	@contact.note = params[:note]
+	redirect to('/contacts')
 end
 
 

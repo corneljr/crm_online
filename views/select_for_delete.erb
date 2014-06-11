@@ -1,0 +1,11 @@
+<div class = "delete_contact">
+	<h2 class = "delete_contact">Delete Contact</h2>
+		<p class = "delete_contact">Select the contact you would like to delete:</p>
+			<ul class = "delete_contact">
+				<% @@rolodex.contacts.each do |contact| %> 
+					<li class = "delete_contact">
+						<a href="/contacts/<%= contact.id %>/delete"><%= contact.first_name + " " + contact.last_name %></a>
+					</li>
+				<% end %>
+			</ul>
+</div>

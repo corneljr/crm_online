@@ -1,34 +1,34 @@
-<%= contact = @@rolodex.contacts.find { |contact| contact.id == @id } %>
 
-<%= embed "Please update #{contact.first_name} #{contact.last_name}'s information" %>
-
-<form action="/contacts" method="post" class="pure-form pure-form-aligned">
-    <fieldset>
+<div class = "edit">
+    <form action="/contacts/<%= @contact.id %>" method="post" class="pure-form pure-form-aligned" >
+        <legend class = "edit">Please update <%= @contact.first_name + " " + @contact.last_name %>'s information.</legend>
+      <fieldset>
         <div class="pure-control-group">
             <label for="name">First Name</label>
-            <input id="name" type="text" placeholder="First Name" name="first_name">
+            <input id="name" type="text" placeholder="First Name" name="first_name" value="<%= @contact.first_name %>">
         </div>
 
         <div class="pure-control-group">
             <label for="name">Last Name</label>
-            <input id="name" type="text" placeholder="Last Name" name="last_name">
+            <input id="name" type="text" placeholder="Last Name" name="last_name" value="<%= @contact.last_name %>">
         </div>
 
         <div class="pure-control-group">
             <label for="email">Email Address</label>
-            <input id="email" type="email" placeholder="Email Address" name="email">
+            <input id="email" type="email" placeholder="Email Address" name="email" value="<%= @contact.email %>">
         </div>
 
         <div class="pure-control-group">
             <label for="foo">Notes</label>
-            <input id="foo" type="text" placeholder="Notes" name="note">
+            <input id="foo" type="text" placeholder="Notes" name="note" value="<%= @contact.note %>">
         </div>
 
         <div class="pure-controls">
             <button type="submit" class="pure-button pure-button-primary" name="submit">Submit</button>
         </div>
-    </fieldset>
-</form>
+      </fieldset>
+    </form>
+</div>
 
 
 
