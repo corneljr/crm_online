@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'data_mapper'
-require_relative 'rolodex'
 
 DataMapper.setup(:default, "sqlite3:database.sqlite3")
 
@@ -17,8 +16,6 @@ end
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-@@rolodex = Rolodex.new
-
 #routes
 
 get '/' do
@@ -26,6 +23,7 @@ get '/' do
 end
 
 get "/contacts" do
+	@contacts = Contact.all
   erb :contacts
 end
 
@@ -34,36 +32,44 @@ get '/contacts/new' do
 end
 
 post '/contacts' do
-	new_contact = Contact.new(params[:first_name],params[:last_name],params[:email], params[:note])
-	@@rolodex.add_contact(new_contact)
+	new_contact = Contact.create(
+		:first_name => params[:first_name],
+		:last_name => params[:last_name],
+		:email => params[:email],
+		:note => params[:note]
+	)
 	redirect to('/')
 end
 
 get '/contacts/modify' do
+	@contacts = Contact.all
 	erb :select_for_modify
 end
 
 get '/contacts/delete' do
+	@contacts = Contact.all
 	erb :select_for_delete
 end
 
 get '/contacts/:id/delete' do
-	@contact = @@rolodex.contacts.find { |contact| contact.id == params[:id].to_i }
-	@@rolodex.delete_contact(@contact)
+	@contact = Contact.get(params[:id].to_i)
+	@contact.destroy
 	redirect to('/contacts')
 end
 
 get '/contacts/:id/edit' do
-	@contact = @@rolodex.contacts.find { |contact| contact.id == params[:id].to_i }
+	@contact = Contact.get(params[:id].to_i)
 	erb :edit_contact
 end
 
 post '/contacts/:id' do
-	@contact = @@rolodex.contacts.find { |contact| contact.id == params[:id].to_i }
-	@contact.first_name = params[:first_name]
-	@contact.last_name = params[:last_name]
-	@contact.email = params[:email]
-	@contact.note = params[:note]
+	@contact = Contact.get(params[:id].to_i)
+	@contact.update(
+		:first_name => params[:first_name],
+		:last_name => params[:last_name],
+		:email => params[:email],
+		:note => params[:note]
+	)
 	redirect to('/contacts')
 end
 
